@@ -5,7 +5,7 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copier les fichiers de dépendances
-COPY package.json package-lock.json ./
+COPY package.json ./
 
 # Installer les dépendances
 RUN npm install
@@ -16,5 +16,5 @@ COPY . .
 # Exposer le port Angular
 EXPOSE 4200
 
-# Lancer le serveur Angular
-CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200"]
+# Lancer le serveur Angular (--poll pour hot reload dans Docker)
+CMD ["npx", "ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--poll", "2000"]

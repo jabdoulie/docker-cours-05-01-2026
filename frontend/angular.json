@@ -8,15 +8,19 @@
       "sourceRoot": "src",
       "architect": {
         "build": {
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/inventory-frontend",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json"
           }
         },
         "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "buildTarget": "inventory-frontend:build",
             "host": "0.0.0.0",
             "port": 4200
           }
